@@ -1,23 +1,17 @@
-# prints immo to ecu communication with format, lines in test1 correspond to :
+# prints immo to ecu communication with format,  sustitute test1 contents with de data sniffed from the k-line between ECU and IMMO
 # white -> immo to ecu bytes
 # green -> immo to ecu correct challenge response
 # yellow -> ecu to immo bytes
 # blue -> ecu to immo opcode
-# red -> ecu to immo msg checkcsum
+# red -> ecu to immo msg checksum
 
 from termcolor import colored
 tests = []  # int array
 tests_strings = [] # str array
 with open("k-line_sniff/test1") as f:
-    for l in f:
-        x = [int(i) for i in l.split(" ")]
-        tests.append(x)
-
-        x = [hex(int(i)) for i in l.split(" ")]
-        tests_strings.append(x)
-
-t1 = tests[1]
-t1_strings = tests_strings[1]
+    l = f.readline()
+    t1 = [int(i) for i in l.split(" ")]
+    t1_strings = [hex(int(i)) for i in l.split(" ")]
 
 # ecu puzzle bytes
 pzl1 = 0
